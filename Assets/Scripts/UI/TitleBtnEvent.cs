@@ -58,6 +58,9 @@ public class TitleBtnEvent : MonoBehaviour,IBtnEvent
             selectBtn = null;
         }
     }
+    public void OnDrag(BaseEventData _eventData)
+    {
+    }
 
     private void Awake()
     {
@@ -68,4 +71,6 @@ public class TitleBtnEvent : MonoBehaviour,IBtnEvent
             btnList.Add(transform.GetChild(i).GetComponent<RectCheck>());
         }
     }
+
+    
 }

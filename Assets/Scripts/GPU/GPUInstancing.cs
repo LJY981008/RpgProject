@@ -12,7 +12,6 @@ public class GPUInstancing : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log(transform.childCount);
         for(int i = 0; i < transform.childCount; i++)
         {
             objects.Add(transform.GetChild(i).GetChild(0).gameObject);

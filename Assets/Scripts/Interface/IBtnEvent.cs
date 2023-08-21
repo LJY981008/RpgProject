@@ -7,4 +7,5 @@ public interface IBtnEvent
 {
     public void OnClickDown(BaseEventData _eventData);
     public void OnClickUp(BaseEventData _eventData);
+    public void OnDrag(BaseEventData _eventData);
 }
