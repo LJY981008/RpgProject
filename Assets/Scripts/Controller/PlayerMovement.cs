@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float speed = 5f;
-    void Update()
+    public CharacterController controller;
+    private float speed = 5f;
+    private float h = 0f;
+    private float v = 0f;
+    private float g = 20f;
+    private void FixedUpdate()
     {
-        Vector3 temp = transform.position;
-        temp.x = temp.x + GameManager.Instance.playerDir.normalized.x * Time.deltaTime * speed;
-        temp.z = temp.z + GameManager.Instance.playerDir.normalized.y * Time.deltaTime * speed;
-        transform.position = temp;
+        MovementPlayer();
+    }
+    private void MovementPlayer()
+    {
+        //이동
+        Vector3 dir = GameManager.Instance.playerDir;
+        h = dir.x;
+        v = dir.y;
+        dir = new Vector3(h, 0, v);
+        dir = controller.transform.TransformDirection(dir);
+        //중력
+        if (!controller.isGrounded)
+        {
+            dir.y -= g * Time.fixedDeltaTime;
+        }
+
+        controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
     }
 }

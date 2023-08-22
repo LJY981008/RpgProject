@@ -19,7 +19,7 @@ public class Stick : MonoBehaviour, IBtnEvent
     private void Start()
     {
         startPos = inner.transform.position;
-        radius = outter.sizeDelta.x * 0.5f;
+        radius = outter.rect.width * 0.5f;
         dir = Vector3.zero;
     }
     public void OnClickDown(BaseEventData _eventData)
@@ -41,9 +41,9 @@ public class Stick : MonoBehaviour, IBtnEvent
         dir = eventData.position - (Vector2)startPos;
         float distance = Vector3.Distance(startPos, eventData.position);
         if (distance > radius)
-            inner.transform.localPosition = startPos + dir.normalized * radius;
+            inner.transform.position = startPos + dir.normalized * radius;
         else
-            inner.transform.localPosition = startPos + dir.normalized * distance;
+            inner.transform.position = startPos + dir.normalized * distance;
         GameManager.Instance.playerDir = dir;
     }
 
