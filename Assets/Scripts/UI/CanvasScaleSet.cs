@@ -7,7 +7,7 @@ public class CanvasScaleSet : MonoBehaviour
 {
     public CanvasScaler scaler;
     //Default 해상도 비율
-    float fixedAspectRatio = 9f / 16f;
+    float fixedAspectRatio = 16f / 9f;
     //현재 해상도의 비율
     float currentAspectRatio = 0f;
     private void Awake()
