@@ -25,6 +25,7 @@ public class Stick : MonoBehaviour, IBtnEvent
     public void OnClickDown(BaseEventData _eventData)
     {
         PointerEventData eventData = (PointerEventData)_eventData;
+        startPos = inner.transform.position;
         inner.transform.position = eventData.position;
     }
 

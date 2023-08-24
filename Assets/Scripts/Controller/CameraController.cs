@@ -5,11 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
+    public bool isAction = false;
 
     private Vector3 offsetPos;
     private void Awake()
     {
-        offsetPos = new Vector3(0f, 2f, -3f);
+        offsetPos = new Vector3(0f, 3f, -3f);
     }
     private void Start()
     {
@@ -19,4 +20,9 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
     }
+    public void MoveCamera()
+    {
+
+    }
+    
 }

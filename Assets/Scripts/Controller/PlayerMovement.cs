@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
+    public PlayerAnimation playerAnimation;
     private float speed = 5f;
     private float h = 0f;
     private float v = 0f;
@@ -26,7 +27,16 @@ public class PlayerMovement : MonoBehaviour
         {
             dir.y -= g * Time.fixedDeltaTime;
         }
-
-        controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
+        if(dir.x != 0f && dir.z != 0f)
+        {
+            playerAnimation.IsMove = true;
+            //transform.LookAt(dir);
+            controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            playerAnimation.IsMove = false;
+        }
+        
     }
 }
