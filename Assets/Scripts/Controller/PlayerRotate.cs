@@ -12,12 +12,5 @@ public class PlayerRotate : MonoBehaviour
     Vector3 stickRotate = Vector3.zero;
     private void FixedUpdate()
     {
-        RotatePlayer();
-    }
-    private void RotatePlayer()
-    {
-        yAngle = GameManager.Instance.camDir.y * Time.fixedDeltaTime * speed;
-        playerRotate.y = yAngle;
-        transform.Rotate(playerRotate);
     }
 }

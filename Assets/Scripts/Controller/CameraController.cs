@@ -1,28 +1,29 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
-    public bool isAction = false;
-
-    private Vector3 offsetPos;
-    private void Awake()
+    private bool isTouch = false;
+    public bool IsTouch
     {
-        offsetPos = new Vector3(0f, 3f, -3f);
+        set { isTouch = value; }
     }
-    private void Start()
+    void Awake()
     {
-        transform.SetParent(player);
-        transform.localPosition = offsetPos;
+        CinemachineCore.GetInputAxis = clickControl;
     }
-    private void Update()
-    {
-    }
-    public void MoveCamera()
+    public float clickControl(string axis)
     {
 
+        if (isTouch)
+        {
+            Debug.Log("hi");
+            return GameManager.Instance.camDir.normalized.y;
+        }
+
+        return 0;
     }
-    
 }

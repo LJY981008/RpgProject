@@ -1,53 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class NPCAction : MonoBehaviour
 {
+    public BlendListCamController blend;
+
+
     public Transform playerCanvas;
     public Transform npcCanvas;
     public Transform player;
     public Transform camPivot;
 
-    public delegate void Action();
-    private Action action;
-    private Vector3 defalutCamPos;
-    private Vector3 defalutCamRot;
-    private Vector3 defalutThisRot;
-    private bool isAction = false;
+    private Vector3 defalutAngle;
+    private Vector3 temp;
+    
     private void Awake()
     {
-        defalutCamPos = Vector3.zero;
-        defalutCamRot = Vector3.zero;
-        defalutThisRot = transform.eulerAngles;
+        defalutAngle = transform.eulerAngles;
+        temp = Vector3.zero;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) EndChat();
+        if (Input.GetMouseButtonDown(1)) EndChat();
     }
     public void StartChat()
     {
-        defalutCamPos = Camera.main.transform.position;
-        defalutCamRot = Camera.main.transform.rotation.eulerAngles;
-        Camera.main.transform.position = camPivot.position;
+        transform.LookAt(player);
+        temp = transform.eulerAngles;
+        temp.x = 0f;
+        transform.eulerAngles = temp;
 
         playerCanvas.gameObject.SetActive(false);
         npcCanvas.gameObject.SetActive(true);
-        Camera.main.transform.SetParent(null);
-        //action += MoveCamera;
+
+        blend.ShowNpc();
     }
     public void EndChat()
     {
-        Camera.main.transform.position = defalutCamPos;
-        Camera.main.transform.eulerAngles = defalutCamRot;
-        transform.eulerAngles = defalutThisRot;
+        temp = Vector3.zero;
+        transform.eulerAngles = defalutAngle;
+        blend.ShowPlayer();
+
         playerCanvas.gameObject.SetActive(true);
         npcCanvas.gameObject.SetActive(false);
+
+        
     }
 
-    public void MoveCamera()
-    {
-        Camera.main.transform.position = Vector3.MoveTowards(defalutCamPos, camPivot.position, Time.deltaTime* 3f);
-        if (Camera.main.transform.position == camPivot.position) action -= MoveCamera;
-    }
 }

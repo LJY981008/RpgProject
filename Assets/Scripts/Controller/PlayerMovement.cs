@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float h = 0f;
     private float v = 0f;
     private float g = 20f;
+    private Vector3 temp = Vector3.zero;
     private void FixedUpdate()
     {
         MovementPlayer();
@@ -30,7 +31,9 @@ public class PlayerMovement : MonoBehaviour
         if(dir.x != 0f && dir.z != 0f)
         {
             playerAnimation.IsMove = true;
-            //transform.LookAt(dir);
+            temp = Camera.main.transform.forward;
+            temp.y = 0f;
+            transform.forward = temp;
             controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
         }
         else

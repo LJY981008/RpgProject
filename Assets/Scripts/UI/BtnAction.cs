@@ -44,7 +44,6 @@ public class BtnAction : MonoBehaviour, IBtnEvent
         if(upBtn == selectedBtn)
         {
             npcAction.StartChat();
-            Debug.Log("상호작용");
         }
     }
 

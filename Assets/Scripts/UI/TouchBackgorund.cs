@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,12 @@ public class TouchBackgorund : MonoBehaviour, IBtnEvent
 {
     private Vector3 startPos = Vector3.zero;
     private Vector3 dir = Vector3.zero;
-    private Vector3 rotation = Vector3.zero;
+    public CameraController camControl;
     public void OnClickDown(BaseEventData _eventData)
     {
         PointerEventData eventdata = (PointerEventData)_eventData;
         startPos = eventdata.position;
+        camControl.IsTouch = true;
     }
 
     public void OnClickUp(BaseEventData _eventData)
@@ -19,8 +21,8 @@ public class TouchBackgorund : MonoBehaviour, IBtnEvent
         PointerEventData eventdata = (PointerEventData)_eventData;
         startPos = Vector3.zero;
         dir = Vector3.zero;
-        rotation = Vector3.zero;
         GameManager.Instance.camDir = dir;
+        camControl.IsTouch = false;
     }
 
     public void OnDrag(BaseEventData _eventData)
@@ -30,4 +32,5 @@ public class TouchBackgorund : MonoBehaviour, IBtnEvent
         dir.y = -(dir.x + dir.y);
         GameManager.Instance.camDir = dir;
     }
+    
 }
