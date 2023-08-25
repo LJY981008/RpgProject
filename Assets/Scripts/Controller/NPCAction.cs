@@ -20,10 +20,6 @@ public class NPCAction : MonoBehaviour
         defalutAngle = transform.eulerAngles;
         temp = Vector3.zero;
     }
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1)) EndChat();
-    }
     public void StartChat()
     {
         transform.LookAt(player);

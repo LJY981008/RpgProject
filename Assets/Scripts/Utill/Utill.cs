@@ -48,4 +48,28 @@ public static class Utill
         }
         return null;
     }
+    public static Transform FindNpcTr(Transform tr)
+    {
+        float radius = 2f;
+        float dis = 0f;
+        LayerMask layer = LayerMask.NameToLayer("NPC");
+        int mask = (1 << layer);
+        Transform temp = null;
+        Collider[] colliders =
+                    Physics.OverlapSphere(tr.transform.position, radius, mask);
+
+        foreach(Collider col in colliders)
+        {
+            if (temp == null)
+            {
+                temp = col.transform;
+                dis = Vector3.Distance(tr.position, temp.position);
+            }
+            else
+            {
+                temp = dis > Vector3.Distance(tr.position, col.transform.position) ? temp : col.transform; 
+            }
+        }
+        return temp;
+    }
 }

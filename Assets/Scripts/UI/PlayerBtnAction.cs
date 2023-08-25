@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BtnAction : MonoBehaviour, IBtnEvent
+public class PlayerBtnAction : MonoBehaviour, IBtnEvent
 {
     public NPCAction npcAction;
+    public GameObject player;
 
     private List<RectCheck> btnList;
     private RectCheck selectedBtn;
@@ -43,7 +44,14 @@ public class BtnAction : MonoBehaviour, IBtnEvent
         }
         if(upBtn == selectedBtn)
         {
-            npcAction.StartChat();
+            if (Utill.FindNpcTr(player.transform) != null)
+            {
+                npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
+                npcAction.StartChat();
+            }
+            else
+            {
+            }
         }
     }
 
