@@ -5,7 +5,6 @@ using Cinemachine;
 public class BlendListCamController : MonoBehaviour
 {
     public CinemachineBlendListCamera blendList;
-
     public Transform cam1;
     public Transform cam2;
     public CinemachineVirtualCameraBase vCam1;
@@ -15,10 +14,13 @@ public class BlendListCamController : MonoBehaviour
     {
         blendList.m_Loop = false;
     }
-    public void ShowNpc()
+    public void ShowNpc(Transform _player, Transform _npc)
     {
         cam1.transform.SetParent(this.transform);
         cam2.transform.SetParent(this.transform);
+
+        cam1.LookAt(_npc);
+        cam2.LookAt(_npc);
 
         blendList.m_Instructions[0].m_VirtualCamera = vCam1;
         blendList.m_Instructions[1].m_VirtualCamera = vCam2;
@@ -28,10 +30,13 @@ public class BlendListCamController : MonoBehaviour
 
         blendList.m_Instructions[0].m_Hold = 1.0f;
     }
-    public void ShowPlayer()
+    public void ShowPlayer(Transform _player, Transform _npc)
     {
         cam2.transform.SetParent(this.transform);
         cam1.transform.SetParent(this.transform);
+
+        cam1.LookAt(_player);
+        cam2.LookAt(_player);
 
         blendList.m_Instructions[0].m_VirtualCamera = vCam2;
         blendList.m_Instructions[1].m_VirtualCamera = vCam1;

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class Utill
 {
+
+
+
+
     /// <summary>
     /// 랜덤 포지션으로 레이캐스트
     /// </summary>

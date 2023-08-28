@@ -6,7 +6,6 @@ public class NPCAction : MonoBehaviour
 {
     public BlendListCamController blend;
 
-
     public Transform playerCanvas;
     public Transform npcCanvas;
     public Transform player;
@@ -20,6 +19,9 @@ public class NPCAction : MonoBehaviour
         defalutAngle = transform.eulerAngles;
         temp = Vector3.zero;
     }
+    /// <summary>
+    /// npc 상호작용 시 UI, Cam 전환
+    /// </summary>
     public void StartChat()
     {
         transform.LookAt(player);
@@ -30,18 +32,27 @@ public class NPCAction : MonoBehaviour
         playerCanvas.gameObject.SetActive(false);
         npcCanvas.gameObject.SetActive(true);
 
-        blend.ShowNpc();
+        blend.ShowNpc(player, transform);
     }
+    /// <summary>
+    /// npc 상호작용 종료 시 UI, Cam 전환
+    /// </summary>
     public void EndChat()
     {
         temp = Vector3.zero;
-        transform.eulerAngles = defalutAngle;
-        blend.ShowPlayer();
-
-        playerCanvas.gameObject.SetActive(true);
-        npcCanvas.gameObject.SetActive(false);
-
+        blend.ShowPlayer(player, transform);
+        StartCoroutine(WaitTransCam());
         
     }
-
+    /// <summary>
+    /// Cam 전환완료 후 UI표시 및 npc 위치 원상복귀 
+    /// </summary>
+    /// <returns>blend 전환 시간과 일치 동일한 시간</returns>
+    IEnumerator WaitTransCam()
+    {
+        yield return new WaitForSeconds(2f);
+        playerCanvas.gameObject.SetActive(true);
+        npcCanvas.gameObject.SetActive(false);
+        transform.eulerAngles = defalutAngle;
+    }
 }
