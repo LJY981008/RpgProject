@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         h = dir.x;
         v = dir.y;
         dir = new Vector3(h, 0, v);
-        dir = controller.transform.TransformDirection(dir);
+        //dir = controller.transform.TransformDirection(dir);
         //ม฿ทย
         if (!controller.isGrounded)
         {
@@ -30,15 +30,25 @@ public class PlayerMovement : MonoBehaviour
         }
         if(dir.x != 0f && dir.z != 0f)
         {
-            playerAnimation.IsMove = true;
-            temp = Camera.main.transform.forward;
-            temp.y = 0f;
-            transform.forward = temp;
-            controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
+            Player.Instance.IsMove = true;
+            if (Player.Instance.isCamRotate)
+            {
+                temp = Camera.main.transform.forward;
+                temp.y = 0f;
+                transform.forward = temp;
+                Player.Instance.isCamRotate = false;
+            }
+            else
+            {
+                Quaternion look = Quaternion.LookRotation(dir.normalized);
+                transform.rotation = look;
+            }
+            controller.Move(transform.forward * speed * Time.fixedDeltaTime);
+            //controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
         }
         else
         {
-            playerAnimation.IsMove = false;
+            Player.Instance.IsMove = false;
         }
         
     }

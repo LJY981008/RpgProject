@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
 
         if (isTouch)
         {
-            Debug.Log("hi");
+            Player.Instance.isCamRotate = true;
             return GameManager.Instance.camDir.normalized.y;
         }
 
