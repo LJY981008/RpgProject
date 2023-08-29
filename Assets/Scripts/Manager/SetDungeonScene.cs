@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SetDungeonScene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject startPivot;
+    private Vector3 startPos;
+    private Vector3 startRot;
+    private GameObject player;
+    private void Awake()
     {
-        
+        startPos = Utill.RandomPos(startPivot.transform.position, 2f, 1f);
+        startPos.y = 1f;
+        startRot = new Vector3(0f, -90f, 0f);
+    }
+    private void Start()
+    {
+        player = Player.Instance.gameObject;
+        player.transform.position = startPos;
+        player.transform.eulerAngles = startRot;
+        Player.Instance.controller.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

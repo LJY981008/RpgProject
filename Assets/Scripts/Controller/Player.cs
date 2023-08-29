@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : Singleton<Player>
 {
     [SerializeField]private Animator animator;
+    public PlayerMovement movement;
+    public CharacterController controller;
     public bool IsMove
     {
         set { animator.SetBool("isMove", value); }
@@ -25,7 +27,10 @@ public class Player : Singleton<Player>
     {
         set { animator.SetBool("isWhillWind", value); }
     }
-
+    public bool IsSpawn
+    {
+        set { movement.isSpawn = value; }
+    }
     public bool isCamRotate = false;
     public bool isRotate = false;
 }

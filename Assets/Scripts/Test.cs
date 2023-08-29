@@ -12,6 +12,7 @@ public class Test : MonoBehaviour, IBtnEvent
 
     public void OnClickUp(BaseEventData _eventData)
     {
+        Player.Instance.transform.position = new Vector3(0f, 1f, 0f);
         GameManager.Instance.LoadScene("DungeonScene");
     }
 

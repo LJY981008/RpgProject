@@ -12,9 +12,6 @@ public class GameManager : Singleton<GameManager>
     public Vector3 camDir = Vector3.zero;
 
 
-    private void Update()
-    {
-    }
 
     public void LoadScene(string sceneName)
     {

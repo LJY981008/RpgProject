@@ -4,8 +4,13 @@ using UnityEngine;
 
 public static class Utill
 {
-
-
+    private static Vector3 boxSize = new Vector3(0.1f, 0.1f, 0.1f);
+    private static float maxDis = 0.1f;
+    private static int groundLayer = (1 << LayerMask.NameToLayer("Terrain"));
+    public static bool IsGrounded(Transform tr)
+    {
+        return Physics.BoxCast(tr.position, boxSize, tr.up, tr.rotation, maxDis, groundLayer);
+    }
 
 
     /// <summary>
@@ -23,11 +28,11 @@ public static class Utill
         origin.x = randX;
         origin.z = randZ;
         origin.y += 200f;
-        int layerMask = (1 << LayerMask.NameToLayer("Terrain")) + (1 << LayerMask.NameToLayer("Item"));
+        int layerMask = (1 << LayerMask.NameToLayer("Terrain")) + (1 << LayerMask.NameToLayer("Player"));
         RaycastHit hitInfo;
         if (Physics.Raycast(origin, Vector3.down, out hitInfo, Mathf.Infinity, layerMask))
         {
-            if (hitInfo.transform.gameObject.layer == (1 << LayerMask.NameToLayer("Item")))
+            if (hitInfo.transform.gameObject.layer == (1 << LayerMask.NameToLayer("Player")))
                 return RandomPos(_origin, rangeX, rangeZ);
             else
                 return hitInfo.point;

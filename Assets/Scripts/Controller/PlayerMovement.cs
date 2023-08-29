@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public PlayerAnimation playerAnimation;
+    public bool isSpawn = true;
     private float speed = 5f;
     private float h = 0f;
     private float v = 0f;
@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 temp = Vector3.zero;
     private void FixedUpdate()
     {
-        MovementPlayer();
+        if(Player.Instance.controller.enabled)
+            MovementPlayer();
     }
     private void MovementPlayer()
     {
@@ -24,9 +25,13 @@ public class PlayerMovement : MonoBehaviour
         dir = new Vector3(h, 0, v);
         //dir = controller.transform.TransformDirection(dir);
         //ม฿ทย
-        if (!controller.isGrounded)
+        if (!Utill.IsGrounded(transform))
         {
             dir.y -= g * Time.fixedDeltaTime;
+            Vector3 gravity = dir;
+            gravity.x = 0f;
+            gravity.z = 0f;
+            controller.Move(gravity.normalized * speed * Time.fixedDeltaTime);
         }
         if(dir.x != 0f && dir.z != 0f)
         {

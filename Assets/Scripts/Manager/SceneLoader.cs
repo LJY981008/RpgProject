@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadingScene()
     {
         yield return null;
+        Player.Instance.controller.enabled = false;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0.0f;
@@ -27,7 +28,6 @@ public class SceneLoader : MonoBehaviour
             timer += (Time.deltaTime * loadSpeed);
             if (op.progress < 0.9f)
             {
-                
                 bar.fillAmount = Mathf.Lerp(bar.fillAmount, op.progress, timer);
                 if (bar.fillAmount >= op.progress)
                 {
@@ -39,7 +39,6 @@ public class SceneLoader : MonoBehaviour
                 bar.fillAmount = Mathf.Lerp(bar.fillAmount, 1f, timer);
                 if (bar.fillAmount == 1.0f)
                 {
-                    
                     op.allowSceneActivation = true;
                     yield break;
                 }
