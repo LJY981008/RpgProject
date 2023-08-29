@@ -29,7 +29,7 @@ public class Player : Singleton<Player>
     }
     public bool IsSpawn
     {
-        set { movement.isSpawn = value; }
+        set { controller.enabled = value; }
     }
     public bool isCamRotate = false;
     public bool isRotate = false;

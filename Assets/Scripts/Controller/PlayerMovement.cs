@@ -36,20 +36,14 @@ public class PlayerMovement : MonoBehaviour
         if(dir.x != 0f && dir.z != 0f)
         {
             Player.Instance.IsMove = true;
-            if (Player.Instance.isCamRotate)
-            {
-                temp = Camera.main.transform.forward;
-                temp.y = 0f;
-                transform.forward = temp;
-                Player.Instance.isCamRotate = false;
-            }
-            else
-            {
-                Quaternion look = Quaternion.LookRotation(dir.normalized);
-                transform.rotation = look;
-            }
+            temp = Camera.main.transform.forward;
+            temp.y = 0;
+            transform.forward = temp;
+            Quaternion quaternion = Quaternion.Euler(transform.eulerAngles);
+            dir = quaternion * dir;
+            float y = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, y, 0f);
             controller.Move(transform.forward * speed * Time.fixedDeltaTime);
-            //controller.Move(dir.normalized * speed * Time.fixedDeltaTime);
         }
         else
         {

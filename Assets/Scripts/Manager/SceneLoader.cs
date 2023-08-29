@@ -18,7 +18,6 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadingScene()
     {
         yield return null;
-        Player.Instance.controller.enabled = false;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0.0f;

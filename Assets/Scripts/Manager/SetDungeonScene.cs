@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class SetDungeonScene : MonoBehaviour
 {
+    public CinemachineFreeLook followCam;
     public GameObject startPivot;
     private Vector3 startPos;
     private Vector3 startRot;
@@ -19,8 +20,10 @@ public class SetDungeonScene : MonoBehaviour
         player = Player.Instance.gameObject;
         player.transform.position = startPos;
         player.transform.eulerAngles = startRot;
-        Player.Instance.controller.enabled = true;
+        Player.Instance.IsSpawn = true;
+        followCam.LookAt = player.transform;
+        followCam.m_LookAt = player.transform;
+        followCam.Follow = player.transform;
     }
-
     
 }
