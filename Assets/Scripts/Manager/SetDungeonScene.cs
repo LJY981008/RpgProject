@@ -22,8 +22,8 @@ public class SetDungeonScene : MonoBehaviour
         player.transform.eulerAngles = startRot;
         Player.Instance.IsSpawn = true;
         followCam.LookAt = player.transform;
-        followCam.m_LookAt = player.transform;
         followCam.Follow = player.transform;
+        Camera.main.transform.forward = player.transform.forward;
     }
     
 }

@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         h = dir.x;
         v = dir.y;
         dir = new Vector3(h, 0, v);
-        //dir = controller.transform.TransformDirection(dir);
         //ม฿ทย
         if (!Utill.IsGrounded(transform))
         {

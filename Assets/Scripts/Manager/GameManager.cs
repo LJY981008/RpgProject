@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
     public Image loadingBar;
     public Vector3 playerDir = Vector3.zero;
     public Vector3 camDir = Vector3.zero;
-
+    public float camZoom = 0f;
 
 
     public void LoadScene(string sceneName)
