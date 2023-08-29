@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 temp = Vector3.zero;
     private void FixedUpdate()
     {
-        if(Player.Instance.controller.enabled)
+        if(Player.Instance.CanMove())
             MovementPlayer();
     }
     private void MovementPlayer()

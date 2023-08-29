@@ -19,6 +19,10 @@ public class PlayerBtnAction : MonoBehaviour, IBtnEvent
             btnList.Add(transform.GetChild(i).GetComponent<RectCheck>());
         }
     }
+    private void Start()
+    {
+        player = Player.Instance.gameObject;
+    }
     public void OnClickDown(BaseEventData _eventData)
     {
         PointerEventData eventData = (PointerEventData)_eventData;
@@ -44,13 +48,24 @@ public class PlayerBtnAction : MonoBehaviour, IBtnEvent
         }
         if(upBtn == selectedBtn)
         {
-            if (Utill.FindNpcTr(player.transform) != null)
+            switch (selectedBtn.name)
             {
-                npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
-                npcAction.StartChat();
-            }
-            else
-            {
+                case "Btn_Attack":
+                    {
+                        Player.Instance.IsAttack = true;
+                    }
+                    break;
+                case "Btn_Action":
+                    {
+                        if (Utill.FindNpcTr(player.transform) != null)
+                        {
+                            npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
+                            npcAction.StartChat();
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
