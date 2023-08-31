@@ -13,6 +13,10 @@ public class GameManager : Singleton<GameManager>
     public float camZoom = 0f;
 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K)) MonsterFactory.Instance.DoMakeTypeGoblin();
+    }
     public void LoadScene(string sceneName)
     {
         nextScene = sceneName;

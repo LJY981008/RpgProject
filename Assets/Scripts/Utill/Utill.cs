@@ -20,7 +20,7 @@ public static class Utill
     /// <param name="rangeX"> x축 반경 </param>
     /// <param name="rangeZ"> z축 반경 </param>
     /// <returns>찍힌 포지션 리턴</returns>
-    public static Vector3 RandomPos(Vector3 _origin, float rangeX, float rangeZ)
+    public static Vector3 RandomPos(Vector3 _origin, float rangeX, float rangeZ, string myLayerName)
     {
         Vector3 origin = _origin;
         float randX = Random.Range(origin.x - rangeX, origin.x + rangeX);
@@ -28,16 +28,16 @@ public static class Utill
         origin.x = randX;
         origin.z = randZ;
         origin.y += 200f;
-        int layerMask = (1 << LayerMask.NameToLayer("Terrain")) + (1 << LayerMask.NameToLayer("Player"));
+        int layerMask = (1 << LayerMask.NameToLayer("Terrain")) + (1 << LayerMask.NameToLayer(myLayerName));
         RaycastHit hitInfo;
         if (Physics.Raycast(origin, Vector3.down, out hitInfo, Mathf.Infinity, layerMask))
         {
             if (hitInfo.transform.gameObject.layer == (1 << LayerMask.NameToLayer("Player")))
-                return RandomPos(_origin, rangeX, rangeZ);
+                return RandomPos(_origin, rangeX, rangeZ, myLayerName);
             else
                 return hitInfo.point;
         }
-        return RandomPos(_origin, rangeX, rangeZ);
+        return RandomPos(_origin, rangeX, rangeZ, myLayerName);
     }
     /// <summary>
     /// 오브젝트를 찾는 재귀함수

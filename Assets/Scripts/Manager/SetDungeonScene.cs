@@ -11,7 +11,7 @@ public class SetDungeonScene : MonoBehaviour
     private GameObject player;
     private void Awake()
     {
-        startPos = Utill.RandomPos(startPivot.transform.position, 2f, 1f);
+        startPos = Utill.RandomPos(startPivot.transform.position, 2f, 1f, "Player");
         startPos.y = 1f;
         startRot = new Vector3(0f, -90f, 0f);
     }
