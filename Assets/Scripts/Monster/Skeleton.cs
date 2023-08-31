@@ -9,6 +9,9 @@ class Skeleton : Monster
     private MonsterHp observer = null;
     private float currentHp;
     private float changedHp;
+    [SerializeField]
+    private SkeletonPattern pattern;
+    
     private void Awake()
     {
         type = MonsterType.Skeleton;
@@ -17,6 +20,11 @@ class Skeleton : Monster
         currentHp = hp;
         hpSubject = GameManager.Instance.HpSubject;
         observer = GameManager.Instance.monsterObserver;
+    }
+    private void Update()
+    {
+        if (currentHp <= 0f)
+            pattern.Die();
     }
     public override void Attack()
     {
@@ -38,4 +46,6 @@ class Skeleton : Monster
             Player.Instance.isAttackFlag = false;
         }
     }
+
+    
 }
