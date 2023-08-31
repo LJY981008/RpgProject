@@ -7,10 +7,9 @@ class Orc : Monster
     public Orc()
     {
         type = MonsterType.Orc;
-        name = "Orc";
         hp = 30;
         damage = 5;
-        Debug.Log(this.name + "持失");
+        Debug.Log("持失");
     }
     public override void Attack()
     {

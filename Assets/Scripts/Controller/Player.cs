@@ -9,9 +9,10 @@ public class Player : Singleton<Player>
     public CharacterController controller;
     public bool isCamRotate = false;
     public bool isRotate = false;
-    public int attackCount = 0;
+
+    private int attackCount = 0;
     private float timer = 0f;
-    private float attackDelay = 1f;
+    private float attackDelay = 1.0f;
     private float attackSpeed = 0.5f;
     public bool IsMove
     {
@@ -24,9 +25,9 @@ public class Player : Singleton<Player>
     {
         set
         {
-            if (attackCount == 0) IsFirstAttack = true;
-            else if (attackCount == 1) IsSecAttack = true;
-            else if (attackCount == 2) IsThrAttack = true;
+            if (attackCount == 0 && animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")) IsFirstAttack = true;
+            else if (attackCount == 1 && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("FirstAttack"))) IsSecAttack = true;
+            else if (attackCount == 2 && (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("SecAttack"))) IsThrAttack = true;
         }
     }
     public bool IsFirstAttack
@@ -34,7 +35,7 @@ public class Player : Singleton<Player>
         set 
         {
             attackCount++;
-            animator.Play("Attack");
+            animator.SetBool("isFirAttack", value);
             timer = 0f;
         }
     }
@@ -51,7 +52,6 @@ public class Player : Singleton<Player>
     {
         set 
         {
-            animator.SetBool("isSecAttack", false);
             attackCount++;
             animator.SetBool("isThrAttack", value);
             timer = 0f;
@@ -77,6 +77,7 @@ public class Player : Singleton<Player>
             timer += Time.deltaTime;
             if(timer > attackDelay)
             {
+                animator.SetBool("isFirAttack", false);
                 animator.SetBool("isSecAttack", false);
                 animator.SetBool("isThrAttack", false);
                 attackCount = 0;

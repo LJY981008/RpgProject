@@ -7,10 +7,9 @@ class Goblin : Monster
     public Goblin()
     {
         type = MonsterType.Goblin;
-        name = "Goblin";
         hp = 10;
         damage = 1;
-        Debug.Log(this.name + "持失");
+        Debug.Log("持失");
     }
     public override void Attack()
     {

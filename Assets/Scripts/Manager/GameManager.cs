@@ -15,7 +15,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K)) MonsterFactory.Instance.DoMakeTypeGoblin();
     }
     public void LoadScene(string sceneName)
     {

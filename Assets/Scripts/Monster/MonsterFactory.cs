@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterFactory : Singleton<MonsterFactory>
+public class MonsterFactory : MonoBehaviour
 {
+    public Transform[] spawnPos;
+    private int spawnTrigger = 0;
     MonsterGenerator[] monsterGenerators = null;
 
     void Start()
@@ -11,17 +13,24 @@ public class MonsterFactory : Singleton<MonsterFactory>
         monsterGenerators = new MonsterGenerator[2];
         monsterGenerators[0] = new PatternGenerator_Goblin();
         monsterGenerators[1] = new PatternGenerator_Orc();
+
+        for(int i = 0; i < spawnPos.Length; i++)
+        {
+            for(int j = 0; j < i+1; j++)
+            {
+                DoMakeTypeGoblin();
+            }
+            spawnTrigger++;
+        }
+
     }
 
     public void DoMakeTypeGoblin()
     {
-        GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Goblin, Utill.RandomPos(new Vector3(-3f, 0f, 18f), 1f, 1f, "Monster"), Quaternion.identity, transform);
+        GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Goblin, Utill.RandomPos(spawnPos[spawnTrigger].position, 1f, 1f, "Monster"), Quaternion.identity, transform);
         monsterGenerators[0].CreateMonster(monster.GetComponent<Goblin>());
         List<Monster> monsters = monsterGenerators[0].getMonsters();
-        /*foreach (Monster monster in monsters)
-        {
-            monster.Attack();
-        }*/
+        
     }
 
     public void DoMakeTypeOrc()
@@ -29,5 +38,9 @@ public class MonsterFactory : Singleton<MonsterFactory>
         GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Orc, Utill.RandomPos(new Vector3(-3f, 0f, 18f), 1f, 1f, "Monster"), Quaternion.identity, transform);
         monsterGenerators[1].CreateMonster(monster.GetComponent<Orc>());
         List<Monster> units = monsterGenerators[1].getMonsters();
+        /*foreach (Monster monster in monsters)
+        {
+            monster.Attack();
+        }*/
     }
 }
