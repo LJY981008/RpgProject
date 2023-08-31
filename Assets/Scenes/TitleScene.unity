@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 374590982}
   - component: {fileID: 374590981}
+  - component: {fileID: 374590983}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -287,6 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f7f6525949e9545aba5041bee22733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 
+  loadingBar: {fileID: 0}
+  playerDir: {x: 0, y: 0, z: 0}
+  camDir: {x: 0, y: 0, z: 0}
+  camZoom: 0
+  hpSubject: {fileID: 374590983}
+  monsterObserver: {fileID: 0}
 --- !u!4 &374590982
 Transform:
   m_ObjectHideFlags: 0
@@ -302,6 +310,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &374590983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374590980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1e80cf89d77c14b9206ac8332bdbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &379829377
 GameObject:
   m_ObjectHideFlags: 0

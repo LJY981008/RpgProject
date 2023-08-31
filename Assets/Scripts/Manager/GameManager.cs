@@ -11,11 +11,11 @@ public class GameManager : Singleton<GameManager>
     public Vector3 playerDir = Vector3.zero;
     public Vector3 camDir = Vector3.zero;
     public float camZoom = 0f;
+    [SerializeField]
+    private HPSubject hpSubject;
+    public HPSubject HpSubject { get { return hpSubject; } }
+    public MonsterHp monsterObserver;
 
-
-    private void Update()
-    {
-    }
     public void LoadScene(string sceneName)
     {
         nextScene = sceneName;

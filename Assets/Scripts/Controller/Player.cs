@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Player : Singleton<Player>
 {
-    [SerializeField]private Animator animator;
+    
+    
     public PlayerMovement movement;
     public CharacterController controller;
     public bool isCamRotate = false;
     public bool isRotate = false;
 
+    [SerializeField] private Animator animator;
     private int attackCount = 0;
     private float timer = 0f;
     private float attackDelay = 1.0f;
     private float attackSpeed = 0.5f;
+
+    [SerializeField] private CharacterData playerData;
+    public HPSubject hpSubject;
+    public bool isAttackFlag = false;
+    private float currentHp;
+    private float changedHp;
+    private float power;
+    public float Power
+    {
+        get { return power; }
+    }
     public bool IsMove
     {
         set 
@@ -36,6 +49,7 @@ public class Player : Singleton<Player>
         {
             attackCount++;
             animator.SetBool("isFirAttack", value);
+            isAttackFlag = true;
             timer = 0f;
         }
     }
@@ -45,6 +59,7 @@ public class Player : Singleton<Player>
         {
             attackCount++;
             animator.SetBool("isSecAttack", value);
+            isAttackFlag = true;
             timer = 0f;
         }
     }
@@ -54,6 +69,7 @@ public class Player : Singleton<Player>
         {
             attackCount++;
             animator.SetBool("isThrAttack", value);
+            isAttackFlag = true;
             timer = 0f;
         }
     }
@@ -68,6 +84,9 @@ public class Player : Singleton<Player>
     private void Start()
     {
         animator.SetFloat("attackSpeed", attackSpeed);
+        currentHp = playerData.MaxHp;
+        power = playerData.Power;
+        hpSubject = GameManager.Instance.HpSubject;
     }
     private void Update()
     {
@@ -85,10 +104,24 @@ public class Player : Singleton<Player>
         }
     }
 
+    public void Hit(float damage)
+    {
+        currentHp -= damage;
+        changedHp = currentHp / playerData.MaxHp;
+        hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID);
+    }
     public bool CanMove()
     {
         if (controller.enabled && attackCount == 0)
             return true;
         return false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.CompareTag("MonsterWeapon"))
+        {
+            Hit(10);
+        }
     }
 }

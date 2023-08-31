@@ -14,33 +14,30 @@ public class MonsterFactory : MonoBehaviour
         monsterGenerators[0] = new PatternGenerator_Goblin();
         monsterGenerators[1] = new PatternGenerator_Orc();
 
-        for(int i = 0; i < spawnPos.Length; i++)
+        for (int i = 0; i < spawnPos.Length; i++)
         {
-            for(int j = 0; j < i+1; j++)
-            {
-                DoMakeTypeGoblin();
-            }
+            DoMakeTypeSkeleton();
             spawnTrigger++;
         }
 
     }
 
-    public void DoMakeTypeGoblin()
+    public void DoMakeTypeSkeleton()
     {
-        GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Goblin, Utill.RandomPos(spawnPos[spawnTrigger].position, 1f, 1f, "Monster"), Quaternion.identity, transform);
-        monsterGenerators[0].CreateMonster(monster.GetComponent<Goblin>());
+        GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Skeleton, Utill.RandomPos(spawnPos[spawnTrigger].position, 1f, 1f, "Monster"), Quaternion.identity, transform);
+        monsterGenerators[0].CreateMonster(monster.GetComponent<Skeleton>());
         List<Monster> monsters = monsterGenerators[0].getMonsters();
         
     }
 
-    public void DoMakeTypeOrc()
+    /*public void DoMakeTypeOrc()
     {
         GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Orc, Utill.RandomPos(new Vector3(-3f, 0f, 18f), 1f, 1f, "Monster"), Quaternion.identity, transform);
         monsterGenerators[1].CreateMonster(monster.GetComponent<Orc>());
         List<Monster> units = monsterGenerators[1].getMonsters();
-        /*foreach (Monster monster in monsters)
+        *//*foreach (Monster monster in monsters)
         {
             monster.Attack();
-        }*/
-    }
+        }*//*
+    }*/
 }

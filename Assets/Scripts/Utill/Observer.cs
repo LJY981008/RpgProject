@@ -1,14 +1,14 @@
 using UnityEngine;
 
 namespace Observer {
-    public interface ICanvasSubject
+    public interface IHpSubject
     {
-        void ResistObserver(ICanvasObserver _observer);
-        void RemoveObserver(ICanvasObserver _observer);
-        void NotifyObserver();
+        void RegisterObserver(IHpObserver _observer);
+        void RemoveObserver(IHpObserver _observer);
+        void NotifyObservers();
     }
-    public interface ICanvasObserver
+    public interface IHpObserver
     {
-        void UpdateData(Canvas canvas);
+        void UpdateData(float playerHp, float monsterHp, int monsterID);
     }
 }

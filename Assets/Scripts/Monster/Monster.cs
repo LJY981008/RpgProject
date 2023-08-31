@@ -3,14 +3,15 @@ using UnityEngine;
 
 public enum MonsterType
 {
-    Goblin,
+    Skeleton,
     Orc
 }
 public abstract class Monster : MonoBehaviour
 {
     protected MonsterType type;
     protected Transform tr;
-    protected int hp;
-    protected float damage;
+    protected float hp;
+    protected float power;
     public abstract void Attack();
+    public abstract void Hit(float damage);
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ResourcesManager : Singleton<ResourcesManager>
 {
-    private GameObject goblin;
-    public GameObject Goblin
+    private GameObject skeleton;
+    public GameObject Skeleton
     {
-        get { return goblin; }
+        get { return skeleton; }
     }
     private GameObject orc;
     public GameObject Orc
@@ -16,7 +16,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
     }
     private void Start()
     {
-        goblin = Resources.Load<GameObject>("ExampleMonsterCube");
+        skeleton = Resources.Load<GameObject>("Skeleton/LowPolySkeleton");
         orc = Resources.Load<GameObject>("ExampleMonsterSphere");
     }
 }
