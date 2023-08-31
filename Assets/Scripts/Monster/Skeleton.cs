@@ -11,6 +11,7 @@ class Skeleton : Monster
     private float changedHp;
     [SerializeField]
     private SkeletonPattern pattern;
+    private bool isAttackFlag = false;
     
     private void Awake()
     {
@@ -26,11 +27,21 @@ class Skeleton : Monster
         if (currentHp <= 0f)
             pattern.Die();
     }
-    public override void Attack()
+    public override float Attack()
     {
         Debug.Log("공격");
+        if (isAttackFlag)
+        {
+            Debug.Log("플래그");
+            isAttackFlag = false;
+            return power;
+        }
+        return 0;
     }
-
+    public void UpdateAttack()
+    {
+        isAttackFlag = true;
+    }
     public override void Hit(float damage)
     {
         currentHp -= damage;

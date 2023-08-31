@@ -15,9 +15,9 @@ class Orc : Monster
         currentHp = hp;
         Debug.Log("생성");
     }
-    public override void Attack()
+    public override float Attack()
     {
-        Debug.Log("공격");
+        return power;
     }
 
     public override void Hit(float damage)

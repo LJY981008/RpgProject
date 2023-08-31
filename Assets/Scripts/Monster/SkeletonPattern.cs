@@ -16,9 +16,11 @@ public class SkeletonPattern : MonoBehaviour
     private Animator animator;
     public Monster skeleton;
     private State state;
+    private NavMeshAgent agent;
     private GameObject player;
     private float speed = 2f;
-    private NavMeshAgent agent;
+    private float attackDelay = 2f;
+    private float timer = 0f;
     private float distance;
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class SkeletonPattern : MonoBehaviour
     }
     private void UpdateState()
     {
+        timer += Time.deltaTime;
         switch (state)
         {
             case State.Idle:
@@ -58,8 +61,10 @@ public class SkeletonPattern : MonoBehaviour
                     animator.SetBool("isAttack", false);
                     distance = Vector3.Distance(transform.position, player.transform.position);
                     if (distance < 1.5f)
+                    {
                         state = State.Attack;
-                    else if(distance > 5f)
+                    }
+                    else if (distance > 5f)
                         state = State.Idle;
                 }
                 break;
@@ -68,8 +73,15 @@ public class SkeletonPattern : MonoBehaviour
                     agent.speed = 0f;
                     agent.destination = transform.position;
                     animator.SetBool("isMove", false);
-                    animator.SetBool("isAttack", true);
-                    skeleton.Attack();
+                    if (timer > attackDelay)
+                    {
+                        timer = 0f;
+                        animator.SetBool("isAttack", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("isAttack", false);
+                    }
                     distance = Vector3.Distance(transform.position, player.transform.position);
                     if (distance > 1.5f)
                         state = State.Move;

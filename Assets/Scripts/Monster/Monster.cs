@@ -12,6 +12,6 @@ public abstract class Monster : MonoBehaviour
     protected Transform tr;
     protected float hp;
     protected float power;
-    public abstract void Attack();
+    public abstract float Attack();
     public abstract void Hit(float damage);
 }

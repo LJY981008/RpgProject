@@ -106,9 +106,19 @@ public class Player : Singleton<Player>
 
     public void Hit(float damage)
     {
-        currentHp -= damage;
-        changedHp = currentHp / playerData.MaxHp;
-        hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID);
+        if (damage > 0)
+        {
+            currentHp -= damage;
+            changedHp = currentHp / playerData.MaxHp;
+            hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID);
+
+            animator.Play("Hit");
+            animator.SetBool("isFirAttack", false);
+            animator.SetBool("isSecAttack", false);
+            animator.SetBool("isThrAttack", false);
+            attackCount = 0;
+            timer = 0;
+        }
     }
     public bool CanMove()
     {
@@ -117,11 +127,16 @@ public class Player : Singleton<Player>
         return false;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
-        if (hit.transform.CompareTag("MonsterWeapon"))
+
+        if (other.transform.CompareTag("MonsterWeapon"))
         {
-            Hit(10);
+            Transform monster = Utill.FindTransform(other.transform.root, "MonsterBody");
+            Monster mob = monster.GetComponent<Skeleton>();
+            Hit(mob.Attack());
         }
+
     }
+
 }
