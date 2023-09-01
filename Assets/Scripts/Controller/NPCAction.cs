@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
+using TMPro;
 public class NPCAction : MonoBehaviour
 {
     public BlendListCamController blend;
@@ -9,7 +11,7 @@ public class NPCAction : MonoBehaviour
     public Transform playerCanvas;
     public Transform npcCanvas;
     public Transform player;
-    public Transform camPivot;
+    public Quest quest;
 
     private Vector3 defalutAngle;
     private Vector3 temp;
@@ -31,8 +33,8 @@ public class NPCAction : MonoBehaviour
 
         playerCanvas.gameObject.SetActive(false);
         npcCanvas.gameObject.SetActive(true);
-
         blend.ShowNpc(player, transform);
+        quest.Typing();
     }
     /// <summary>
     /// npc 상호작용 종료 시 UI, Cam 전환
@@ -42,7 +44,6 @@ public class NPCAction : MonoBehaviour
         temp = Vector3.zero;
         blend.ShowPlayer(player, transform);
         StartCoroutine(WaitTransCam());
-        
     }
     /// <summary>
     /// Cam 전환완료 후 UI표시 및 npc 위치 원상복귀 

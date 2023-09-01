@@ -7,6 +7,7 @@ public class NPCBtnAction : MonoBehaviour, IBtnEvent
 {
     public NPCAction npcAction;
     public QuestUI questUI;
+    public Quest quest;
     private List<RectCheck> btnList;
     private RectCheck selectedBtn = null;
     private void Awake()
@@ -51,7 +52,7 @@ public class NPCBtnAction : MonoBehaviour, IBtnEvent
             {
                 case "BtnAccept":
                     {
-                        questUI.AddQuset("°íºí¸°", "5");
+                        questUI.AddQuset(quest.QuestData.MonsterName, quest.QuestData.Num.ToString());
                         npcAction.EndChat();
                     }
                     break;
