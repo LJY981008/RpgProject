@@ -55,7 +55,8 @@ class Skeleton : Monster
             pattern.Die();
             observer.gameObject.SetActive(false);
             observer.monsterName.gameObject.SetActive(false);
-            SaveManager.Instance.mainQuest.UpdateQuest();
+            if(SaveManager.Instance.mainQuest != null)
+                SaveManager.Instance.mainQuest.UpdateQuest();
         }
     }
     private void OnTriggerEnter(Collider other)
