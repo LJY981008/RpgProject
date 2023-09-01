@@ -12,7 +12,19 @@ public static class Utill
         return Physics.BoxCast(tr.position, boxSize, tr.up, tr.rotation, maxDis, groundLayer);
     }
 
-
+    public static bool RandomChance(float percent)
+    {
+        int mag = 1000;
+        bool succces = false;
+        int standValue = 100 * mag;
+        float hitRange = percent * mag;
+        int rand = UnityEngine.Random.Range(1, standValue + 1);
+        if(rand <= hitRange)
+        {
+            succces = true;
+        }
+        return succces;
+    }
     /// <summary>
     /// 랜덤 포지션으로 레이캐스트
     /// </summary>

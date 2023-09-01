@@ -7,6 +7,7 @@ enum State
 {
     Idle,
     Move,
+    Repos,
     Attack,
     Die
 }
@@ -20,16 +21,24 @@ public class SkeletonPattern : MonoBehaviour
     private GameObject player;
     private float speed = 2f;
     private float attackDelay = 2f;
-    private float timer = 0f;
-    private float distance;
+    private float timer = 2f;
+    private float toPlayerDistance;
+    private float toSpawnDistance;
+    private Vector3 spawnPos;
     private void Awake()
     {
+        spawnPos = transform.position;
         agent = GetComponent<NavMeshAgent>();
         player = Player.Instance.gameObject;
         state = State.Idle;
     }
     private void Update()
     {
+        toSpawnDistance = Vector3.Distance(transform.position, spawnPos);
+        if(toSpawnDistance > 7f)
+        {
+            state = State.Repos;
+        }
         UpdateState();
     }
     public void Die()
@@ -46,10 +55,10 @@ public class SkeletonPattern : MonoBehaviour
                     agent.speed = 0f;
                     animator.SetBool("isMove", false);
                     animator.SetBool("isAttack", false);
-                    distance = Vector3.Distance(transform.position, player.transform.position);
-                    if (distance < 1.5f)
+                    toPlayerDistance = Vector3.Distance(transform.position, player.transform.position);
+                    if (toPlayerDistance < 1.5f)
                         state = State.Attack;
-                    else if (distance <= 5f)
+                    else if (toPlayerDistance <= 5f)
                         state = State.Move;
                 }
                 break;
@@ -59,12 +68,12 @@ public class SkeletonPattern : MonoBehaviour
                     agent.destination = player.transform.position;
                     animator.SetBool("isMove", true);
                     animator.SetBool("isAttack", false);
-                    distance = Vector3.Distance(transform.position, player.transform.position);
-                    if (distance < 1.5f)
+                    toPlayerDistance = Vector3.Distance(transform.position, player.transform.position);
+                    if (toPlayerDistance < 1.5f)
                     {
                         state = State.Attack;
                     }
-                    else if (distance > 5f)
+                    else if (toPlayerDistance > 5f)
                         state = State.Idle;
                 }
                 break;
@@ -82,11 +91,19 @@ public class SkeletonPattern : MonoBehaviour
                     {
                         animator.SetBool("isAttack", false);
                     }
-                    distance = Vector3.Distance(transform.position, player.transform.position);
-                    if (distance > 1.5f)
+                    toPlayerDistance = Vector3.Distance(transform.position, player.transform.position);
+                    if (toPlayerDistance > 1.5f)
                         state = State.Move;
-                    else if (distance > 5f)
+                    else if (toPlayerDistance > 5f)
                         state = State.Idle;
+                }
+                break;
+            case State.Repos:
+                {
+                    agent.speed = speed;
+                    agent.destination = spawnPos;
+                    animator.SetBool("isMove", true);
+                    animator.SetBool("isAttack", false);
                 }
                 break;
             case State.Die:

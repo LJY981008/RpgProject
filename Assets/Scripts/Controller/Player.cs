@@ -110,7 +110,7 @@ public class Player : Singleton<Player>
         {
             currentHp -= damage;
             changedHp = currentHp / playerData.MaxHp;
-            hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID);
+            hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID, hpSubject.MonsterName);
 
             animator.Play("Hit");
             animator.SetBool("isFirAttack", false);

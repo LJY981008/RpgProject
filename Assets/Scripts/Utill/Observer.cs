@@ -9,6 +9,6 @@ namespace Observer {
     }
     public interface IHpObserver
     {
-        void UpdateData(float playerHp, float monsterHp, int monsterID);
+        void UpdateData(float playerHp, float monsterHp, int monsterID, string monsterName);
     }
 }

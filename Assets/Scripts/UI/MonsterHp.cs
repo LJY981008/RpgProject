@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Observer;
+using TMPro;
 public class MonsterHp : MonoBehaviour, IHpObserver
 {
     public bool isChanged = false;
     public float currentHp = 1.1f;
+    public TextMeshProUGUI monsterName;
     private float speed = 3f;
     private Image hpBar;
     private HPSubject subject;
@@ -17,6 +19,7 @@ public class MonsterHp : MonoBehaviour, IHpObserver
         GameManager.Instance.monsterObserver = this;
         subject = GameManager.Instance.HpSubject;
         gameObject.SetActive(false);
+        monsterName.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
@@ -39,9 +42,10 @@ public class MonsterHp : MonoBehaviour, IHpObserver
         }
     }
 
-    public void UpdateData(float playerHp, float monsterHp, int _monsterID)
+    public void UpdateData(float playerHp, float monsterHp, int _monsterID, string _monsterName)
     {
         currentHp = monsterHp;
+        monsterName.text = _monsterName;
         if(monsterID != _monsterID)
         {
             isChanged = true;

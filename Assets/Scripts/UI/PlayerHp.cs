@@ -27,7 +27,7 @@ public class PlayerHp : MonoBehaviour, IHpObserver
         }
     }
     
-    public void UpdateData(float playerHp, float monsterHp, int monsterID)
+    public void UpdateData(float playerHp, float monsterHp, int monsterID, string monsterName)
     {
         currentHp = playerHp;
     }

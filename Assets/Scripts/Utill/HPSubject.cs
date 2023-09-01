@@ -12,6 +12,8 @@ public class HPSubject : MonoBehaviour, IHpSubject
     public float MonsterHp { get { return monsterHp; } }
     private int monsterID = 0;
     public int MonsterID { get { return monsterID; } }
+    private string monsterName = string.Empty;
+    public string MonsterName { get { return monsterName; } }
 
     public void RegisterObserver(IHpObserver _observer)
     {
@@ -26,15 +28,15 @@ public class HPSubject : MonoBehaviour, IHpSubject
     {
         for (int i = 0; i < this.observers.Count; i++)
         {
-            observers[i].UpdateData(playerHp, monsterHp, monsterID);
+            observers[i].UpdateData(playerHp, monsterHp, monsterID, monsterName);
         }
     }
 
-    public void Changed(float _playerHp, float _monsterHp, int _monsterID)
-    {
+    public void Changed(float _playerHp, float _monsterHp, int _monsterID, string _monsterName)    {
         playerHp = _playerHp;
         monsterHp = _monsterHp;
         monsterID = _monsterID;
+        monsterName = _monsterName;
         NotifyObservers();
     }
 }

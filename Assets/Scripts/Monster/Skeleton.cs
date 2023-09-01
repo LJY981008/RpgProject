@@ -25,7 +25,12 @@ class Skeleton : Monster
     private void Update()
     {
         if (currentHp <= 0f)
+        {
             pattern.Die();
+            observer.gameObject.SetActive(false);
+            observer.monsterName.gameObject.SetActive(false);
+        }
+            
     }
     public override float Attack()
     {
@@ -44,10 +49,12 @@ class Skeleton : Monster
     }
     public override void Hit(float damage)
     {
+        if (Utill.RandomChance(10)) damage *= 2;
         currentHp -= damage;
         changedHp = currentHp / hp;
         observer.gameObject.SetActive(true);
-        hpSubject.Changed(hpSubject.PlayerHp, changedHp, transform.GetInstanceID());
+        observer.monsterName.gameObject.SetActive(true);
+        hpSubject.Changed(hpSubject.PlayerHp, changedHp, transform.GetInstanceID(), "Skeleton");
     }
     private void OnTriggerEnter(Collider other)
     {
