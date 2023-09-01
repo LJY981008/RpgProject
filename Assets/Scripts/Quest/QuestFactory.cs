@@ -15,22 +15,15 @@ public class QuestFactory : MonoBehaviour
         questGenerators = new QuestGenerator[1];
         questGenerators[0] = new PatternGenerator_MainQuest();
     }
-    public void UpdateQuest()
-    {
-        // null로 넘어가는 현상해결
-        questItem = SaveManager.Instance.mainQuestItem;
-        thisItem = Instantiate(questItem, Utill.FindTransform(transform, "QusetContent"));
-        thisQuest = SaveManager.Instance.mainQuest;
-        questGenerators[0].CreateQuest(thisQuest);
-    }
     public void AddQuest(int uid)
     {
         switch (uid)
         {
             case (int)QuestType.MAIN:
                 {
+                    SaveManager.Instance.thisUid = uid;
                     //메인퀘
-                    thisItem = Instantiate(questItem, Utill.FindTransform(transform, "QusetContent"));
+                    thisItem = Instantiate(questItem, Utill.FindTransform(transform, "QuestContent"));
                     thisQuest = thisItem.AddComponent<MainQuest>();
                     questGenerators[0].CreateQuest(thisQuest);
                     foreach(QuestData quest in ResourcesManager.Instance.QuestDataList)

@@ -26,7 +26,7 @@ public class SetDungeonScene : MonoBehaviour
         followCam.LookAt = player.transform;
         followCam.Follow = player.transform;
         Camera.main.transform.forward = player.transform.forward;
-        questFactory.UpdateQuest();
+        questFactory.AddQuest(SaveManager.Instance.thisUid);
 
     }
     

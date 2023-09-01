@@ -23,6 +23,8 @@ public class Player : Singleton<Player>
     private float currentHp;
     private float changedHp;
     private float power;
+
+    public bool isGetKey = false;
     public float Power
     {
         get { return power; }
