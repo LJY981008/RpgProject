@@ -8,6 +8,12 @@ public class QuestData : ScriptableObject
 {
     [Header("Äù½ºÆ® Á¤º¸"), Space(10f)]
     [SerializeField]
+    private int uid;
+    public int UID { get { return uid; } }
+    [SerializeField]
+    private int chapter;
+    public int Chapter { get { return chapter; } }
+    [SerializeField]
     private string questCode;
     public string QuestCode { get { return questCode; } }
     [SerializeField]
@@ -18,6 +24,9 @@ public class QuestData : ScriptableObject
     public string Description { get { return description; } }
 
     [Header("Äù½ºÆ® ¸ñÇ¥"), Space(10f)]
+    [SerializeField]
+    private MonsterType monsterType;
+    public MonsterType MonsterType { get { return monsterType; } }
     [SerializeField]
     private string monsterName;
     public string MonsterName { get { return monsterName; } }

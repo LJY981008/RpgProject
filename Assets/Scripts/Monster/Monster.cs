@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum MonsterType
 {
+    NONE = 10000,
     Skeleton,
     Orc
 }

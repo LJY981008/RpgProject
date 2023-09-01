@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class Quest : MonoBehaviour
+using System.Globalization;
+
+public class TypingText : MonoBehaviour
 {
+    MonsterType monster;
     public TextMeshProUGUI description;
     public Transform chatBackground;
     public QuestBackgroundClick backgroundClick;
@@ -20,13 +23,15 @@ public class Quest : MonoBehaviour
     private int typingTrigger = 0;
     public bool isClick = false;
     public bool isNextFlag = false;
+    public bool isAcceptQuset = false;
+    public int uid;
 
     private void Awake()
     {
         typingSpeed = 0.1f;
         questChapter = 1;
         questLog = new List<string>();
-        SetQuest();
+        SetQuestTable();
     }
     private void Update()
     {
@@ -48,9 +53,9 @@ public class Quest : MonoBehaviour
 
     public void Typing()
     {
-        StartCoroutine(TypingText());
+        StartCoroutine(TypingLog());
     }
-    IEnumerator TypingText()
+    IEnumerator TypingLog()
     {
         for (int j = 0; j < questLog[typingTrigger].Length; j++)
         {
@@ -59,14 +64,17 @@ public class Quest : MonoBehaviour
         }
         isClick = true;
     }
-    private void SetQuest()
+    private void SetQuestTable()
     {
         for(int i = 0; i < ResourcesManager.Instance.Csv_QuestTable.Count; i++)
         {
             if(ResourcesManager.Instance.Csv_QuestTable[i]["Chapter"].ToString() == questChapter.ToString())
             {
                 questLog.Add(ResourcesManager.Instance.Csv_QuestTable[i]["Content"].ToString());
+                string strUid = ResourcesManager.Instance.Csv_QuestTable[i]["UID"].ToString();
+                uid = int.Parse(strUid);
             }
         }
+       
     }
 }

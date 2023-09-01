@@ -6,6 +6,9 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     [SerializeField]
+    private int uid;
+    public int UID { get { return uid; } }
+    [SerializeField]
     private float maxHp;
     public float MaxHp { get { return maxHp; } }
     [SerializeField]

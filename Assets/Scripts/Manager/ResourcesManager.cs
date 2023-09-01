@@ -16,15 +16,21 @@ public class ResourcesManager : Singleton<ResourcesManager>
     }
     private List<Dictionary<string, object>> csv_QuestTable;
     public List<Dictionary<string, object>> Csv_QuestTable { get { return csv_QuestTable; } }
-
-private void Start()
+    private Object[] questDataObject;
+    private List<QuestData> questDataList;
+    public List<QuestData> QuestDataList { get { return questDataList; } }
+    private void Start()
     {
         skeleton = Resources.Load<GameObject>("Skeleton/LowPolySkeleton");
         orc = Resources.Load<GameObject>("ExampleMonsterSphere");
         csv_QuestTable = CSVReader.Read("CSV/QuestTable");
-        for (int i = 0; i < csv_QuestTable.Count; i++)
+        questDataObject = Resources.LoadAll("Scrabtable/Quest");
+        questDataList = new List<QuestData>();
+        for(int i = 0; i < questDataObject.Length; i++)
         {
-            Debug.Log(csv_QuestTable[i]["Content"].ToString());
+            questDataList.Add(questDataObject[i] as QuestData);
+            Debug.Log(questDataList[i].UID);
         }
+
     }
 }

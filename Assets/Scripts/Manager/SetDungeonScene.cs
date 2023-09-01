@@ -5,6 +5,7 @@ using Cinemachine;
 public class SetDungeonScene : MonoBehaviour
 {
     public CinemachineFreeLook followCam;
+    public QuestFactory questFactory;
     public GameObject startPivot;
     private Vector3 startPos;
     private Vector3 startRot;
@@ -25,6 +26,8 @@ public class SetDungeonScene : MonoBehaviour
         followCam.LookAt = player.transform;
         followCam.Follow = player.transform;
         Camera.main.transform.forward = player.transform.forward;
+        questFactory.UpdateQuest();
+
     }
     
 }

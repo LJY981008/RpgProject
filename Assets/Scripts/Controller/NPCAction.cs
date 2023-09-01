@@ -11,7 +11,7 @@ public class NPCAction : MonoBehaviour
     public Transform playerCanvas;
     public Transform npcCanvas;
     public Transform player;
-    public Quest quest;
+    public TypingText quest;
 
     private Vector3 defalutAngle;
     private Vector3 temp;

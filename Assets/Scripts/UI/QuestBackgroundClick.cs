@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class QuestBackgroundClick : MonoBehaviour, IBtnEvent
 {
-    public Quest quest;
+    public TypingText quest;
     public void OnClickDown(BaseEventData _eventData)
     {
         if (quest.isClick)

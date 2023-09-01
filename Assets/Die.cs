@@ -13,7 +13,10 @@ public class Die : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (stateInfo.normalizedTime > 0.9f) animator.gameObject.SetActive(false);
+        if (stateInfo.normalizedTime > 0.9f)
+        {
+            animator.gameObject.SetActive(false);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

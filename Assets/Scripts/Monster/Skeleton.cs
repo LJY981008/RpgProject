@@ -24,12 +24,7 @@ class Skeleton : Monster
     }
     private void Update()
     {
-        if (currentHp <= 0f)
-        {
-            pattern.Die();
-            observer.gameObject.SetActive(false);
-            observer.monsterName.gameObject.SetActive(false);
-        }
+        
             
     }
     public override float Attack()
@@ -55,6 +50,13 @@ class Skeleton : Monster
         observer.gameObject.SetActive(true);
         observer.monsterName.gameObject.SetActive(true);
         hpSubject.Changed(hpSubject.PlayerHp, changedHp, transform.GetInstanceID(), "Skeleton");
+        if (currentHp <= 0f)
+        {
+            pattern.Die();
+            observer.gameObject.SetActive(false);
+            observer.monsterName.gameObject.SetActive(false);
+            SaveManager.Instance.mainQuest.UpdateQuest();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

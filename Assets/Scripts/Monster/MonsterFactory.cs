@@ -11,7 +11,7 @@ public class MonsterFactory : MonoBehaviour
     void Start()
     {
         monsterGenerators = new MonsterGenerator[2];
-        monsterGenerators[0] = new PatternGenerator_Goblin();
+        monsterGenerators[0] = new PatternGenerator_Skeleton();
         monsterGenerators[1] = new PatternGenerator_Orc();
 
         for (int i = 0; i < spawnPos.Length; i++)
@@ -26,7 +26,6 @@ public class MonsterFactory : MonoBehaviour
     {
         GameObject monster = Instantiate<GameObject>(ResourcesManager.Instance.Skeleton, Utill.RandomPos(spawnPos[spawnTrigger].position, 1f, 1f, "Monster"), Quaternion.identity, transform);
         monsterGenerators[0].CreateMonster(monster.GetComponent<Skeleton>());
-        List<Monster> monsters = monsterGenerators[0].getMonsters();
         
     }
 
