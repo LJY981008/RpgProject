@@ -11,10 +11,17 @@ public class PlayerMovement : MonoBehaviour
     private float v = 0f;
     private float g = 20f;
     private Vector3 temp = Vector3.zero;
+    private void Start()
+    {
+    }
     private void FixedUpdate()
     {
-        if(Player.Instance.CanMove())
-            MovementPlayer();
+        if(Player.Instance != null)
+        {
+            if(Player.Instance.CanMove())
+                MovementPlayer();
+        }
+            
     }
     private void MovementPlayer()
     {

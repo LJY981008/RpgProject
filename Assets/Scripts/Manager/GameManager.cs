@@ -19,9 +19,11 @@ public class GameManager : Singleton<GameManager>
     private HPSubject hpSubject;
     public HPSubject HpSubject { get { return hpSubject; } }
     public MonsterHp monsterObserver;
+    public bool isNew = true;
 
     public void LoadScene(string sceneName)
     {
+        Player.Instance.IsSpawn = false;
         nextScene = sceneName;
         SceneManager.LoadScene("LoadingScene");
     }
