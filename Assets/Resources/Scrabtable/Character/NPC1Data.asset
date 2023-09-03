@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faf7bd0616dd965419feaa133930242e, type: 3}
-  m_Name: SkeletonData
+  m_Name: NPC1Data
   m_EditorClassIdentifier: 
-  maxHp: 30
-  power: 5
+  uid: 3001
+  maxHp: 0
+  power: 0

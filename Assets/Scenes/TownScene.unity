@@ -2096,7 +2096,7 @@ MonoBehaviour:
   playerCanvas: {fileID: 195114104}
   npcCanvas: {fileID: 2001691540}
   player: {fileID: 0}
-  quest: {fileID: 232916444}
+  questTmp: {fileID: 65293908}
 --- !u!65 &232916443
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2119,19 +2119,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 232916438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8701fa37c50abb74abf3a0907d100b66, type: 3}
+  m_Script: {fileID: 11500000, guid: e666e1f803de7c748a2ab1104f59a55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: {fileID: 65293908}
-  chatBackground: {fileID: 303538979}
-  backgroundClick: {fileID: 1272540597}
-  summery: {fileID: 1750500999}
-  summeryText: {fileID: 644027099}
-  questData: {fileID: 11400000, guid: b48f0bf57e6cf32448dc2302beae14e8, type: 2}
-  isClick: 0
-  isNextFlag: 0
-  isAcceptQuset: 0
-  uid: 0
+  myData: {fileID: 11400000, guid: 9efdf4c6c28ec6848afc7c1eb2b8f3a9, type: 2}
 --- !u!1001 &241988219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7768,7 +7759,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798113516}
-  m_LocalRotation: {x: 0.0934933, y: 0.14456336, z: -0.013721903, w: 0.9849732}
+  m_LocalRotation: {x: 0.09349328, y: 0.14456335, z: -0.013721899, w: 0.9849732}
   m_LocalPosition: {x: 4.53, y: 2.6, z: 1.9899998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10230,7 +10221,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038114058}
-  m_LocalRotation: {x: 0.0934933, y: 0.14456336, z: -0.013721903, w: 0.9849732}
+  m_LocalRotation: {x: 0.09349328, y: 0.14456335, z: -0.013721899, w: 0.9849732}
   m_LocalPosition: {x: 11.523621, y: -0.8583014, z: -4.9875035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12529,7 +12520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd571f9a7de0804abd190b8584e1bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 232916444}
+  questMain: {fileID: 1750500998}
+  textView: {fileID: 644027099}
 --- !u!1001 &1284317284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12629,7 +12621,6 @@ GameObject:
   - component: {fileID: 1313004685}
   - component: {fileID: 1313004684}
   - component: {fileID: 1313004688}
-  - component: {fileID: 1313004689}
   m_Layer: 0
   m_Name: QuestList
   m_TagString: Untagged
@@ -12739,20 +12730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!114 &1313004689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313004682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687cb7cc51a774a4bbe0916a9d9b56c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisQuest: {fileID: 0}
-  questItem: {fileID: 1354320005429944530, guid: fcd59fbc49cd7744aade3673cc6e030b, type: 3}
 --- !u!1 &1322401133
 GameObject:
   m_ObjectHideFlags: 0
@@ -15421,6 +15398,7 @@ MonoBehaviour:
   followCam: {fileID: 1750878744}
   spawnPos: {fileID: 1766299818}
   dungeonToTownPos: {fileID: 568260753}
+  scrollView: {fileID: 1313004683}
 --- !u!1001 &1680340639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16551,8 +16529,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcAction: {fileID: 232916442}
-  typing: {fileID: 232916444}
-  questFactory: {fileID: 1313004689}
 --- !u!114 &1750501003
 MonoBehaviour:
   m_ObjectHideFlags: 0

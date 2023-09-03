@@ -15,10 +15,3 @@ class PatternGenerator_Orc : MonsterGenerator
         monsters.Add(orc);
     }
 }
-class PatternGenerator_MainQuest : QuestGenerator
-{
-    public override void CreateQuest(Quest quest)
-    {
-        questList.Add(quest);
-    }
-}

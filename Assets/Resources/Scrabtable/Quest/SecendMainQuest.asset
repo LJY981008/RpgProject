@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 979cfc380d81d644ab1729acae19a050, type: 3}
-  m_Name: FirstMainQuest
+  m_Name: SecendMainQuest
   m_EditorClassIdentifier: 
   type: 101
-  uid: 1
-  questCode: First_Main_Quest
-  summeryName: "\uC2A4\uCF08\uB808\uD1A4\uC744 \uD574\uCE58\uC6B0\uC790"
-  description: "\uB9C8\uC744 \uC8FC\uBCC0\uC5D0 \uC2A4\uCF08\uB808\uD1A4\uB4E4\uC774
-    \uC0DD\uACBC\uB2E4. \uC2A4\uCF08\uB808\uD1A4\uC744 \uD574\uCE58\uC6B0\uC790."
-  monsterType: 10001
-  monsterName: "\uC2A4\uCF08\uB808\uD1A4"
-  num: 3
+  uid: 2
+  questCode: Secend_Main_Quest
+  summeryName: "\uBCF4\uC2A4\uB97C \uD574\uCE58\uC6B0\uC790"
+  description: "\uC2A4\uCF08\uB808\uD1A4\uB4E4\uC744 \uD1B5\uC194\uD558\uB294 \uBCF4\uC2A4\uBAAC\uC2A4\uD130\uB97C
+    \uD574\uCE58\uC6B0\uC790"
+  monsterType: 10002
+  monsterName: Boss
+  num: 1

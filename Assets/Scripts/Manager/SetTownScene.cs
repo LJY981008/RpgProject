@@ -8,6 +8,7 @@ public class SetTownScene : MonoBehaviour
     public CinemachineFreeLook followCam;
     public Transform spawnPos;
     public Transform dungeonToTownPos;
+    public Transform scrollView;
 
     private void Awake()
     {
@@ -15,5 +16,7 @@ public class SetTownScene : MonoBehaviour
         followCam.LookAt = Player.Instance.transform;
         Player.Instance.transform.position = spawnPos.position;
         Player.Instance.IsSpawn = true;
+        QuestManager.Instance.scrollView = scrollView;
+        QuestManager.Instance.SetViewItem();
     }
 }

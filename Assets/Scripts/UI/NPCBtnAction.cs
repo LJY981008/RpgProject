@@ -6,8 +6,6 @@ using UnityEngine.EventSystems;
 public class NPCBtnAction : MonoBehaviour, IBtnEvent
 {
     public NPCAction npcAction;
-    public TypingText typing;
-    public QuestFactory questFactory;
     private List<RectCheck> btnList;
     private RectCheck selectedBtn = null;
     private void Awake()
@@ -52,8 +50,9 @@ public class NPCBtnAction : MonoBehaviour, IBtnEvent
             {
                 case "BtnAccept":
                     {
-                        typing.isAcceptQuset = true;
-                        questFactory.AddQuest(typing.uid);
+                        QuestManager.Instance.currentMonsterCount = 0;
+                        QuestManager.Instance.SetViewItem();
+                        QuestManager.Instance.isQuestAccept = true;
                         npcAction.EndChat();
                     }
                     break;

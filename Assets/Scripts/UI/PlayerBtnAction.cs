@@ -59,8 +59,18 @@ public class PlayerBtnAction : MonoBehaviour, IBtnEvent
                     {
                         if (Utill.FindNpcTr(player.transform) != null)
                         {
-                            npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
-                            npcAction.StartChat();
+                            if (!QuestManager.Instance.isQuestAccept)
+                            {
+                                npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
+                                npcAction.StartChat();
+                            }
+                            else if (QuestManager.Instance.isQuestSuccess)
+                            {
+                                npcAction = Utill.FindNpcTr(player.transform).GetComponent<NPCAction>();
+                                QuestManager.Instance.Clearquest();
+                                QuestManager.Instance.isQuestSuccess = false;
+                                npcAction.StartChat();
+                            } 
                         }
                     }
                     break;

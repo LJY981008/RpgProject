@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public static class Utill
 {
+    
+
+
+
     private static Vector3 boxSize = new Vector3(0.1f, 0.1f, 0.1f);
     private static float maxDis = 0.1f;
     private static int groundLayer = (1 << LayerMask.NameToLayer("Terrain"));
+    /// <summary>
+    /// 바닥체크
+    /// </summary>
+    /// <param name="tr"></param>
+    /// <returns></returns>
     public static bool IsGrounded(Transform tr)
     {
         return Physics.BoxCast(tr.position, boxSize, tr.up, tr.rotation, maxDis, groundLayer);
     }
-
+    /// <summary>
+    /// 확률형 함수
+    /// </summary>
+    /// <param name="percent">원하는 확률</param>
+    /// <returns>성공했는지</returns>
     public static bool RandomChance(float percent)
     {
         int mag = 1000;

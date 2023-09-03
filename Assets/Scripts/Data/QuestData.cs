@@ -8,11 +8,11 @@ public class QuestData : ScriptableObject
 {
     [Header("Äù½ºÆ® Á¤º¸"), Space(10f)]
     [SerializeField]
-    private int uid;
-    public int UID { get { return uid; } }
+    private int type;
+    public int Type { get { return type; } }
     [SerializeField]
-    private int chapter;
-    public int Chapter { get { return chapter; } }
+    private int uid;
+    public int Uid { get { return uid; } }
     [SerializeField]
     private string questCode;
     public string QuestCode { get { return questCode; } }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourcesManager : Singleton<ResourcesManager>
+public class ResourcesManager : MonoBehaviour
 {
+    public static ResourcesManager Instance;
     private GameObject skeleton;
     public GameObject Skeleton
     {
@@ -19,6 +20,10 @@ public class ResourcesManager : Singleton<ResourcesManager>
     private Object[] questDataObject;
     private List<QuestData> questDataList;
     public List<QuestData> QuestDataList { get { return questDataList; } }
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+    }
     private void Start()
     {
         skeleton = Resources.Load<GameObject>("Skeleton/LowPolySkeleton");
@@ -29,7 +34,6 @@ public class ResourcesManager : Singleton<ResourcesManager>
         for(int i = 0; i < questDataObject.Length; i++)
         {
             questDataList.Add(questDataObject[i] as QuestData);
-            Debug.Log(questDataList[i].UID);
         }
 
     }

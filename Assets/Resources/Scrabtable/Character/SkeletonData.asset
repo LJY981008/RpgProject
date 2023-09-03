@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: faf7bd0616dd965419feaa133930242e, type: 3}
-  m_Name: PlayerData
+  m_Name: SkeletonData
   m_EditorClassIdentifier: 
-  maxHp: 100
-  power: 10
+  uid: 10001
+  maxHp: 30
+  power: 5
