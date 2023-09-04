@@ -1,6 +1,17 @@
 using UnityEngine;
+
+public enum IconType
+{
+    NONE,
+    Equipment,
+    Skill,
+    Inventory,
+    Setting,
+    Exit
+}
 public class RectCheck : MonoBehaviour
 {
+    public IconType iconType;
     private RectTransform rcTransfrom;
     private Rect rc;
     public Rect RC
