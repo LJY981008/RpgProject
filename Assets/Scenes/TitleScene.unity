@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 282326982}
   - component: {fileID: 282326983}
   m_Layer: 0
-  m_Name: InventoryManager
+  m_Name: ToolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,6 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe29768e24d23446bb39797b1505a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+  quickUI: {fileID: 0}
+  selectedSlotToIcon: {fileID: 0}
+  isSelected: 0
+  portionData: {fileID: 11400000, guid: 7cb1d90f90ec12d48a0286ddc5e7c1f9, type: 2}
+  goodsData: {fileID: 11400000, guid: d212297fe4a9c984fb89940d18c0ebc4, type: 2}
 --- !u!1 &374590980
 GameObject:
   m_ObjectHideFlags: 0

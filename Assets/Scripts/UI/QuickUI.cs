@@ -11,6 +11,7 @@ public class QuickUI : MonoBehaviour, IBtnEvent
     private void Awake()
     {
         CheckedSlot();
+        ToolManager.Instance.quickUI = this;
     }
     public void CheckedSlot()
     {

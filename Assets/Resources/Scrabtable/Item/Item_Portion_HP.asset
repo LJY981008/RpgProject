@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d93b367b188f84ba242eb87af6791e, type: 3}
   m_Name: Item_Portion_HP
   m_EditorClassIdentifier: 
-  itemID: 0
+  type: 100001
+  itemID: 2
   itemIcon: {fileID: 21300000, guid: 1618cb37bcd5144fd923b9697be57d63, type: 3}
   _maxAmount: 99
-  _value: 0
+  _value: 30

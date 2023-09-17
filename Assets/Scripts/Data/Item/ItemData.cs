@@ -9,6 +9,9 @@ public abstract class ItemData : ScriptableObject
 {
     [Header("아이템 정보")]
     [SerializeField]
+    private ItemType type;
+    public ItemType Type { get { return type; } }
+    [SerializeField]
     private int itemID;
     public int ItemID { get { return itemID; } }
     [SerializeField]
