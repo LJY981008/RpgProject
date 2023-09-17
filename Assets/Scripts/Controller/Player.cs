@@ -122,6 +122,16 @@ public class Player : Singleton<Player>
             timer = 0;
         }
     }
+    public void Heal(float amount)
+    {
+        Debug.Log(currentHp);
+        currentHp += amount;
+        if (currentHp > playerData.MaxHp)
+            currentHp = playerData.MaxHp;
+        changedHp = currentHp / playerData.MaxHp;
+        hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID, hpSubject.MonsterName);
+        Debug.Log(currentHp + ":" + changedHp);
+    }
     public bool CanMove()
     {
         if (controller.enabled && attackCount == 0)

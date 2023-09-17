@@ -8,6 +8,7 @@ public class QuickUI : MonoBehaviour, IBtnEvent
 {
     public List<RectCheck> slotList;
     private RectCheck selectedSlot = null;
+    
     private void Awake()
     {
         CheckedSlot();
@@ -30,27 +31,30 @@ public class QuickUI : MonoBehaviour, IBtnEvent
     {
         PointerEventData eventData = (PointerEventData)_eventData;
         Image icon = null;
-        GameObject thisSlot = null;
-        if (ToolManager.Instance.isSelected)
+        GameObject thisIcon = null;
+        int index = -1;
+        foreach (RectCheck slot in slotList)
         {
-            
-            foreach (RectCheck slot in slotList)
+            index++;
+            if (slot.IsInRect(eventData.position))
             {
-                if (slot.IsInRect(eventData.position))
-                {
-                    selectedSlot = slot;
-                    thisSlot = Utill.FindTransform(selectedSlot.transform, "Icon").gameObject;
-                    icon = ToolManager.Instance.selectedSlotToIcon.GetComponent<Image>();
-                    break;
-                }
+                selectedSlot = slot;
+                thisIcon = Utill.FindTransform(selectedSlot.transform, "Icon").gameObject;
+                icon = ToolManager.Instance.selectedSlotToIcon.GetComponent<Image>();
+                break;
             }
-            if (selectedSlot != null)
-            {
-                thisSlot.SetActive(true);
-                thisSlot.GetComponent<Image>().sprite = icon.sprite;
-            }
-            ToolManager.Instance.isSelected = false;
         }
+        if (selectedSlot != null)
+        {
+            if (ToolManager.Instance.isSelected)
+            {
+                thisIcon.SetActive(true);
+                thisIcon.GetComponent<Image>().sprite = icon.sprite;
+                ToolManager.Instance.AddQuickItem(index);
+                ToolManager.Instance.isSelected = false;
+            }
+        }
+        index = -1;
         selectedSlot = null;
     }
 

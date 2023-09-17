@@ -62,8 +62,10 @@ public class InventoryUI : MonoBehaviour,IBtnEvent
     {
         PointerEventData eventData = (PointerEventData)_eventData;
         GameObject selectedIcon = null;
+        int index = -1;
         foreach(RectCheck slot in slotList)
         {
+            index++;
             if (slot.IsInRect(eventData.position))
             {
                 selectedSlot = slot;
@@ -75,9 +77,10 @@ public class InventoryUI : MonoBehaviour,IBtnEvent
         {
             ToolManager.Instance.isSelected = true;
             ToolManager.Instance.selectedSlotToIcon = selectedIcon;
+            ToolManager.Instance.selectedSlotIndex = index;
             selectedSlot = null;
         }
-
+        index = -1;
     }
 
     public void OnDrag(BaseEventData _eventData)

@@ -25,6 +25,10 @@ public class PlayerHp : MonoBehaviour, IHpObserver
         {
             hpBar.fillAmount -= (Time.deltaTime * speed);
         }
+        else if (hpBar.fillAmount < currentHp)
+        {
+            hpBar.fillAmount = currentHp;
+        }
     }
     
     public void UpdateData(float playerHp, float monsterHp, int monsterID, string monsterName)

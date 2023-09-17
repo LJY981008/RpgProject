@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public enum ItemType
 {
     NONE = 100000,
@@ -12,14 +13,18 @@ public class ToolManager : MonoBehaviour
 {
     public static ToolManager Instance;
 
+    public DungeonQuickUI dungeonQuickUI;
     public InventoryUI inventoryUI;
     public QuickUI quickUI;
 
     public GameObject selectedSlotToIcon = null;
+    public int selectedSlotIndex = -1;
     public bool isSelected = false;
 
     private int maxSizeItems = 25;
+    private int maxSizeQuicks = 3;
     public Item[] items;
+    public Item[] quicks;
     public ItemData portionData;
     public ItemData goodsData;
 
@@ -30,13 +35,8 @@ public class ToolManager : MonoBehaviour
             Instance = this;
         }
         items = new Item[maxSizeItems];
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddItem(portionData, 2);
-        }
+        quicks = new Item[maxSizeQuicks];
+        AddItem(portionData, 12);
     }
     /// <summary>
     /// 동일 아이템 찾기
@@ -98,5 +98,22 @@ public class ToolManager : MonoBehaviour
         }
         if (inventoryUI != null)
             inventoryUI.UpdateSlot(items);
+    }
+    public void AddQuickItem(int index)
+    {
+        quicks[index] = items[selectedSlotIndex];
+    }
+    public void UseItem(int index, int num)
+    {
+        if (quicks[index] == null) return;
+        if (quicks[index] is IUseItem uItem)
+        {
+            if (uItem.Use(num))
+            {
+                Player.Instance.Heal(uItem.GetValue());
+                if (dungeonQuickUI != null)
+                    dungeonQuickUI.UpdateSlot(quicks);
+            }
+        }
     }
 }

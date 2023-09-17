@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IUseItem
 {
     public bool Use(int num);
+    public float GetValue();
 }

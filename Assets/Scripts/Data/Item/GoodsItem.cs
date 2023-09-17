@@ -12,6 +12,10 @@ public class GoodsItem : CountableItem, IUseItem
         Amount -= num;
         return true;
     }
+    public float GetValue()
+    {
+        return 0;
+    }
     protected override CountableItem Clone(int amount)
     {
         return new GoodsItem(CountableData as GoodsItemData, amount);

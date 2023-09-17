@@ -28,7 +28,6 @@ public class SetDungeonScene : MonoBehaviour
         Camera.main.transform.forward = player.transform.forward;
         QuestManager.Instance.scrollView = scrollView;
         QuestManager.Instance.SetViewItem();
-
     }
     
 }

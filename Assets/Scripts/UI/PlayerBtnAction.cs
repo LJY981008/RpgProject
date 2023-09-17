@@ -39,23 +39,26 @@ public class PlayerBtnAction : MonoBehaviour, IBtnEvent
     {
         PointerEventData eventData = (PointerEventData)_eventData;
         RectCheck upBtn = null;
+        int index = -1;
         foreach(RectCheck btn in btnList)
         {
+            if (btn.iconType == IconType.Quick) index++;
             if (btn.IsInRect(eventData.position))
             {
                 upBtn = btn;
+                break;
             }
         }
         if(upBtn == selectedBtn)
         {
-            switch (selectedBtn.name)
+            switch (selectedBtn.iconType)
             {
-                case "Btn_Attack":
+                case IconType.Attack:
                     {
                         Player.Instance.IsAttack = true;
                     }
                     break;
-                case "Btn_Action":
+                case IconType.Action:
                     {
                         if (Utill.FindNpcTr(player.transform) != null)
                         {
@@ -72,6 +75,11 @@ public class PlayerBtnAction : MonoBehaviour, IBtnEvent
                                 npcAction.StartChat();
                             } 
                         }
+                    }
+                    break;
+                case IconType.Quick:
+                    {
+                        ToolManager.Instance.UseItem(index, 1);
                     }
                     break;
                 default:

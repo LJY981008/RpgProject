@@ -29,10 +29,8 @@ class Skeleton : Monster
     }
     public override float Attack()
     {
-        Debug.Log("공격");
         if (isAttackFlag)
         {
-            Debug.Log("플래그");
             isAttackFlag = false;
             return power;
         }
