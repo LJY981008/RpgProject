@@ -302,6 +302,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164409733}
   m_CullTransparentMesh: 1
+--- !u!1 &282326981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 282326982}
+  - component: {fileID: 282326983}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &282326982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282326981}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2096723207}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282326983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282326981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe29768e24d23446bb39797b1505a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &374590980
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee5ae7201117204b81fbb5aab22ea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconType: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1245,9 @@ MonoBehaviour:
   currentQuestUid: 0
   currentQuestType: 0
   mainQuestProgreeUID: 1
+  currentMonsterCount: -1
+  isQuestAccept: 0
+  isQuestSuccess: 0
 --- !u!1 &1832402248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee5ae7201117204b81fbb5aab22ea81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconType: 0
 --- !u!114 &1832402251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,6 +1500,7 @@ Transform:
   - {fileID: 130992239}
   - {fileID: 1519768220}
   - {fileID: 1222425000}
+  - {fileID: 282326982}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -7,6 +7,7 @@ public enum IconType
     Skill,
     Inventory,
     Setting,
+    Quick,
     Exit
 }
 public class RectCheck : MonoBehaviour
