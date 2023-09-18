@@ -12,7 +12,7 @@ public class WeaponItemData : CountlessItemData
     [SerializeField] private float _power;
 
     public double AdditionalPower => step * 5;
-    [HideInInspector] public int step = 1;
+    [HideInInspector] public int step = 0;
 
     public override Item CreateItem()
     {

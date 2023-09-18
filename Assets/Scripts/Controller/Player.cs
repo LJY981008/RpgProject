@@ -105,7 +105,6 @@ public class Player : Singleton<Player>
             }
         }
     }
-
     public void Hit(float damage)
     {
         if (damage > 0)
@@ -124,13 +123,11 @@ public class Player : Singleton<Player>
     }
     public void Heal(float amount)
     {
-        Debug.Log(currentHp);
         currentHp += amount;
         if (currentHp > playerData.MaxHp)
             currentHp = playerData.MaxHp;
         changedHp = currentHp / playerData.MaxHp;
         hpSubject.Changed(changedHp, hpSubject.MonsterHp, hpSubject.MonsterID, hpSubject.MonsterName);
-        Debug.Log(currentHp + ":" + changedHp);
     }
     public bool CanMove()
     {

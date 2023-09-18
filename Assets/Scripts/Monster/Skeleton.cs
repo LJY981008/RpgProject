@@ -40,8 +40,13 @@ class Skeleton : Monster
     {
         isAttackFlag = true;
     }
-    public override void Hit(float damage)
+    public override void Hit(float _damage)
     {
+        float damage = _damage;
+        if(ToolManager.Instance.applyWeapon.Data is WeaponItemData data)
+        {
+            damage += data.Power + (float)data.AdditionalPower;
+        }
         if (Utill.RandomChance(10)) damage *= 2;
         currentHp -= damage;
         changedHp = currentHp / hp;
