@@ -19,7 +19,11 @@ public class InventoryUI : MonoBehaviour,IBtnEvent
     private void OnEnable()
     {
         ToolManager.Instance.inventoryUI = this;
-        UpdateSlot(ToolManager.Instance.items);
+        UpdateSlot(ToolManager.Instance.inventoryItems);
+    }
+    private void OnDisable()
+    {
+        ToolManager.Instance.inventoryUI = null;
     }
     public void CheckedSlot()
     {

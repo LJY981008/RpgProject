@@ -30,6 +30,7 @@ public class QuickUI : MonoBehaviour, IBtnEvent
     public void OnClickUp(BaseEventData _eventData)
     {
         PointerEventData eventData = (PointerEventData)_eventData;
+        if (ToolManager.Instance.inventoryUI == null) return;
         Image icon = null;
         GameObject thisIcon = null;
         int index = -1;

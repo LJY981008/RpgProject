@@ -81,6 +81,7 @@ public class QuestManager : MonoBehaviour
     }
     public void UpdateQuest(int type)
     {
+        if (currentData == null) return;
         if (type == (int)currentData.MonsterType)
         {
             currentMonsterCount++;

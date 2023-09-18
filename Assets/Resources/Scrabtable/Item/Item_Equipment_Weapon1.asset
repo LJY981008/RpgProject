@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d93b367b188f84ba242eb87af6791e, type: 3}
-  m_Name: Item_Portion_
+  m_Script: {fileID: 11500000, guid: c1562e78d02bc4149b34be6a5325c5aa, type: 3}
+  m_Name: Item_Equipment_Weapon1
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemIcon: {fileID: 0}
-  _maxAmount: 99
-  _value: 0
+  type: 100002
+  itemID: 3001
+  itemIcon: {fileID: 21300000, guid: 4873aa989d5fcd546b28025805f15ee8, type: 3}
+  _maxDurability: 100
+  _power: 20
+  step: 1
