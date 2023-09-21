@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 100002
   itemID: 3001
-  itemIcon: {fileID: 21300000, guid: 4873aa989d5fcd546b28025805f15ee8, type: 3}
+  itemIcon: {fileID: 21300000, guid: c278ec36abbc540489a08ba8765cd092, type: 3}
   _maxDurability: 100
   _power: 20
   step: 1

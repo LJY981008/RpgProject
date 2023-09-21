@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Item_Equipment_", menuName = "Inventory System/Item Data/Equipment", order = 3)]
+[CreateAssetMenu(fileName = "Item_Equipment_Weapon", menuName = "Inventory System/Item Data/Equipment/Weapon", order = 3)]
 public class WeaponItemData : CountlessItemData
 {
     /// <summary>

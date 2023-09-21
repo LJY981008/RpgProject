@@ -38,11 +38,11 @@ public class ToolManager : MonoBehaviour
     private int maxSizeWeapons = 4;
     private int maxSizeDefence = 4;
     public Item[] weapons;
-    public Item[] defences;
+    public Item[] armors;
     public Item applyWeapon;
-    public Item applyDefence;
+    public Item applyArmor;
     public ItemData[] weaponsData;
-    public ItemData[] defencesData;
+    public ItemData[] armorData;
     
 
     private void Awake()
@@ -54,11 +54,14 @@ public class ToolManager : MonoBehaviour
         inventoryItems = new Item[maxSizeItems];
         quicks = new Item[maxSizeQuicks];
         weapons = new Item[maxSizeWeapons];
-        defences = new Item[maxSizeDefence];
+        armors = new Item[maxSizeDefence];
         AddItem(portionData, 12);
         AddWeapon(weaponsData[0]);
         AddWeapon(weaponsData[1]);
+        AddArmor(armorData[0]);
+        AddArmor(armorData[1]);
         EquipWeapon(0);
+        EquipArmor(0);
     }
     /// <summary>
     /// 동일 아이템 찾기
@@ -142,6 +145,7 @@ public class ToolManager : MonoBehaviour
     {
         applyWeapon = weapons[index];
     }
+    
     public void AddWeapon(ItemData weapon)
     {
         int emptyIndex = -1;
@@ -151,6 +155,21 @@ public class ToolManager : MonoBehaviour
             ci.SetDurability(data.MaxDurability);
             emptyIndex = FindEmpty(weapons);
             weapons[emptyIndex] = ci;
+        }
+    }
+    public void EquipArmor(int index)
+    {
+        applyArmor = armors[index];
+    }
+    public void AddArmor(ItemData armor)
+    {
+        int emptyIndex = -1;
+        if(armor is CountlessItemData data)
+        {
+            CountlessItem ci = data.CreateItem() as CountlessItem;
+            ci.SetDurability(data.MaxDurability);
+            emptyIndex = FindEmpty(armors);
+            armors[emptyIndex] = ci;
         }
     }
 }

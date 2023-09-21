@@ -352,12 +352,15 @@ MonoBehaviour:
   selectedSlotToIcon: {fileID: 0}
   selectedSlotIndex: -1
   isSelected: 0
+  isOpenInventory: 0
   portionData: {fileID: 11400000, guid: 7cb1d90f90ec12d48a0286ddc5e7c1f9, type: 2}
   goodsData: {fileID: 11400000, guid: d212297fe4a9c984fb89940d18c0ebc4, type: 2}
   weaponsData:
   - {fileID: 11400000, guid: 08216c4e5c2f486498dc7f02acb5ea97, type: 2}
   - {fileID: 11400000, guid: a46a58ecf24f5fd49951e82f174e4246, type: 2}
-  defencesData: []
+  armorData:
+  - {fileID: 11400000, guid: 6f5fe405c583bf742be6fbf3c754ec43, type: 2}
+  - {fileID: 11400000, guid: eaef8f4c64735a547ada1bc8c9e7c445, type: 2}
 --- !u!1 &374590980
 GameObject:
   m_ObjectHideFlags: 0

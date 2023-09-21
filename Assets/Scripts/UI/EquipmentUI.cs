@@ -6,37 +6,63 @@ using UnityEngine.EventSystems;
 
 public class EquipmentUI : MonoBehaviour, IBtnEvent
 {
-    public List<RectCheck> slotList;
-    public Transform applyWeapon;
-    public Transform slotParent;
+    public List<RectCheck> weaponSlotList;
+    public List<RectCheck> armorSlotList;
+    public Transform weaponSlotApply;
+    public Transform weaponSlotParent;
+    public Transform armorSlotApply;
+    public Transform armorSlotParent;
     private RectCheck selectedSlot;
     private void Awake()
     {
-        applyWeapon = transform.GetChild(0);
-        slotParent = transform.GetChild(1);
         selectedSlot = null;
-        for(int i = 0; i < slotParent.childCount; i++)
+        for(int i = 0; i < weaponSlotParent.childCount; i++)
         {
-            slotList.Add(slotParent.GetChild(i).GetComponent<RectCheck>());
+            weaponSlotList.Add(weaponSlotParent.GetChild(i).GetComponent<RectCheck>());
+        }
+        for(int i = 0; i < armorSlotParent.childCount; i++)
+        {
+            armorSlotList.Add(armorSlotParent.GetChild(i).GetComponent<RectCheck>());
         }
     }
     private void OnEnable()
     {
-        UpdateSlot(ToolManager.Instance.weapons);
+        UpdateSlot();
     }
-    public void UpdateSlot(Item[] items)
+    public void UpdateSlot()
     {
-        Transform applyIcon = Utill.FindTransform(applyWeapon, "Icon");
-        applyIcon.gameObject.SetActive(true);
-        applyIcon.GetComponent<Image>().sprite = ToolManager.Instance.applyWeapon.Data.ItemIcon;
-        for (int i = 0; i < items.Length; i++)
+        Item[] weapons = ToolManager.Instance.weapons;
+        Item[] armors = ToolManager.Instance.armors;
+ 
+        Transform weaponIconApply = Utill.FindTransform(weaponSlotApply, "Icon");
+        weaponIconApply.gameObject.SetActive(true);
+        weaponIconApply.GetComponent<Image>().sprite = ToolManager.Instance.applyWeapon.Data.ItemIcon;
+        
+        Transform armorIconApply = Utill.FindTransform(armorSlotApply, "Icon");
+        armorIconApply.gameObject.SetActive(true);
+        armorIconApply.GetComponent<Image>().sprite = ToolManager.Instance.applyArmor.Data.ItemIcon;
+
+        for (int i = 0; i < weapons.Length; i++)
         {
-            if (items[i] != null)
+            if (weapons[i] != null)
             {
-                if (items[i] is CountlessItem ci)
+                if (weapons[i] is CountlessItem ci)
                 {
-                    Transform icon = Utill.FindTransform(slotList[i].transform, "Icon");
-                    slotList[i].gameObject.SetActive(true);
+                    Transform icon = Utill.FindTransform(weaponSlotList[i].transform, "Icon");
+                    weaponSlotList[i].gameObject.SetActive(true);
+                    icon.gameObject.SetActive(true);
+                    icon.GetComponent<Image>().sprite = ci.Data.ItemIcon;
+                }
+            }
+        }
+        for(int i = 0; i < armors.Length; i++)
+        {
+            if(armors[i] != null)
+            {
+                if(armors[i] is CountlessItem ci)
+                {
+                    Transform icon = Utill.FindTransform(armorSlotList[i].transform, "Icon");
+                    armorSlotList[i].gameObject.SetActive(true);
                     icon.gameObject.SetActive(true);
                     icon.GetComponent<Image>().sprite = ci.Data.ItemIcon;
                 }
@@ -47,14 +73,30 @@ public class EquipmentUI : MonoBehaviour, IBtnEvent
     {
         PointerEventData eventData = (PointerEventData)_eventData;
         GameObject selectedIcon = null;
+        bool isWeapon = false;
         int index = -1;
-        foreach(RectCheck slot in slotList)
+
+        foreach(RectCheck slot in weaponSlotList)
         {
             index++;
             if (slot.IsInRect(eventData.position))
             {
                 selectedSlot = slot;
+                isWeapon = true;
                 break;
+            }
+        }
+        if (!isWeapon)
+        {
+            index = -1;
+            foreach(RectCheck slot in armorSlotList)
+            {
+                index++;
+                if (slot.IsInRect(eventData.position))
+                {
+                    selectedSlot = slot;
+                    break;
+                }
             }
         }
         if(selectedSlot != null)
@@ -62,9 +104,11 @@ public class EquipmentUI : MonoBehaviour, IBtnEvent
             selectedIcon = Utill.FindTransform(selectedSlot.transform, "Icon").gameObject;
             if (selectedIcon.activeSelf)
             {
-                ToolManager.Instance.EquipWeapon(index);
-                UpdateSlot(ToolManager.Instance.weapons);
+                if (isWeapon) ToolManager.Instance.EquipWeapon(index);
+                else ToolManager.Instance.EquipArmor(index);
+                UpdateSlot();
             }
+            isWeapon = false;
             selectedSlot = null;
         }
     }
